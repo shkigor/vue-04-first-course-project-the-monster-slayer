@@ -1,11 +1,13 @@
-new Vue({
+var data = {
+    playerHealth: 100,
+    monsterHealth: 100,
+    gameIsRunning: false,
+    turns: []
+};
+
+var vm1 = new Vue({
     el: '#app',
-    data: {
-        playerHealth: 100,
-        monsterHealth: 100,
-        gameIsRunning: false,
-        turns: []
-    },
+    data: data,
     methods: {
         startGame: function () {
             this.gameIsRunning = true;
@@ -39,6 +41,7 @@ new Vue({
                 return;
             }
             this.monsterAttacks();
+            this.$refs.myAttackButton.innerText = 'My Attack';
         },
         heal: function () {
             if (this.playerHealth <= 90) {
@@ -84,3 +87,7 @@ new Vue({
         }
     }
 });
+
+console.log(vm1.$data === data);
+
+vm1.$refs.playerHealthDiv.innerText = 'This is a hack - 1000000';
